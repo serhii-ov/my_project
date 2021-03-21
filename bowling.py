@@ -19,13 +19,14 @@ class Bowling:
         # n += 1
 
     def frame_state(self):
-        frame_name = {'one': 'open', 'two': 'spare', 'three': 'strike'}
-        if scores == 10:
-            return ('{}'.format(frame_name['three']))
-        elif scores + scores_two > 10:
-            return ('{}'.format(frame_name['two']))
-        else:
-            return ('{}'.format(frame_name['one']))
+        pass
+        # frame_name = {'one': 'open', 'two': 'spare', 'three': 'strike'}
+        # if scores == 10:
+        #     return ('{}'.format(frame_name['three']))
+        # elif scores + scores_two > 10:
+        #     return ('{}'.format(frame_name['two']))
+        # else:
+        #     return ('{}'.format(frame_name['one']))
         # return frame_name[i]
 
 
