@@ -1,41 +1,40 @@
-class Bowling:
+class Frame:
+    frame = 0
 
     def __init__(self, scores):
         self.scores = scores
 
-    def one_frame(self, frame=0):
-        frame += 1
-        scores = int(input('Input number from 0 to 10: '))
-        if scores > -1 and scores < 10:
-            scores_two = int(input('Input number from 0 to 10: '))
-            # frame += 1
-            return ('Frame {}: {} + {}'.format(frame, scores, scores_two))
-        elif scores == 10:
-            return ('Frame {}: {}'.format(frame, scores))
-        elif scores == '':
-            print('You missed')
-        else:
-            print('Incorrect input!')
-        # n += 1
+    def skittles(self):
+        throw_ = int(input('Input number from 0 to 10: '))
+        if throw_ < 10:
+            throw_two = int(input('Input number from 0 to 10: '))
+            return throw_, throw_two
+        return throw_
 
     def frame_state(self):
-        pass
-        # frame_name = {'one': 'open', 'two': 'spare', 'three': 'strike'}
-        # if scores == 10:
-        #     return ('{}'.format(frame_name['three']))
-        # elif scores + scores_two > 10:
-        #     return ('{}'.format(frame_name['two']))
-        # else:
-        #     return ('{}'.format(frame_name['one']))
-        # return frame_name[i]
+        if throw_ + throw_two < 10:
+            return False
+        return True
+
+    def scores_storage(self):
+        scores = throw_ + throw_two
+        return scores
 
 
-player = Bowling(0)
-counter = 0
-while counter < 10:
-    print(player.one_frame())
-    print(player.frame_state())
-    counter += 1
+class Game(Frame):
+
+    frame_types = {'1': 'open', '2': 'spare', '3': 'strike'}
+
+    def scores_board(self):
+        super().skittles()
+        return ('{}  {}'.format( throw_, throw_two))
+
+def on_play():
+    pass
+
+player = Game(scores=0)
+print(player.skittles())
+print(player.scores_board())
 
 
 
