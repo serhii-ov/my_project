@@ -1,47 +1,45 @@
 class Bank:
 
-    def __init__(self, account, cash_amount):
-        self.account = account
-        self.cash_amount = cash_amount
+    def __init__(self, money, sum_):
+        self.money = money
+        self.sum_ = sum_
+        self.currency = 'USD'
+        self.option = {'deposit': '1', 'withdraw': '2', 'close': '3'}
 
-    def deposit_cash(self):
-        return account + cash_amount
-
-    def withdraw_cash(self):
-        return account - cash_amount
-
-    def close_account(self):
-        return account
-
-    try:
-        client_name = input('Enter you name, please: ')
-        open_account = input('Would you like to open an account:\nif yes - print y, if not - any symbol: ')
-
-        if open_account != 'y':
+    def open_account(self):
+        client_decision = input('Would you like to open an account:\nif yes - print y, if not - any symbol: ')
+        if client_decision != 'y':
             print('We are sorry about your decision')
             exit()
-        account = int(input('To activate account, deposit some sum: '))
+        return 'Your request is processing'
+
+    def client_request(self):
         client_option = input('Choose your option, please:\n1 for deposit, 2 for withdrawal, 3 for close account: ')
-
-        if client_option == '1':
-            cash_amount = int(input('Input an amount you wanna deposit on: '))
-            total_account = account + cash_amount
-            print('Operation is succeeded.\nAccount state: {} USD'.format(total_account))
-
-        elif client_option == '2':
-            cash_amount = int(input('Input an amount you wanna withdraw: '))
-            total_account = account - cash_amount
-            if total_account < 0:
-                print('No enough money. Your account state: {} USD'.format(account))
-            else:
-                print('Operation is succeeded.\nAccount state: {} USD'.format(total_account))
-
-        elif client_option == '3':
-            print('Your account is closed.\nGet {} USD.'.format(account))
-            exit()
-
+        if client_option == self.option['close']:
+            return self.close_account()
+        self.sum_ = int(input('Input a sum: '))
+        if client_option == self.option['deposit']:
+            return self.deposit_cash()
+        elif client_option == self.option['withdraw']:
+            return self.withdraw_cash()
         else:
             print('No such option!')
+            raise ValueError('Incorrect input')
 
-    except ValueError:
-        print('Incorrect input.')
+    def deposit_cash(self):
+        print('Your account: {} {}.'.format((self.money + self.sum_), self.currency))
+        return self.money + self.sum_
+
+    def withdraw_cash(self):
+        if self.money - self.sum_ < 0:
+            print('Insufficient funds')
+        return 'Your assets: {} {}'.format(self.money, self.currency)
+
+    def close_account(self):
+        print('Your account is closed.\nGet {} {}.'.format(self.money, self.currency))
+        return self.money
+
+
+client = Bank(0, 0)
+print(client.open_account())
+print(client.client_request())
