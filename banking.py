@@ -28,17 +28,21 @@ class Bank:
             raise ValueError('Incorrect input')
 
     def deposit_cash(self):
-        print('Your account: {} {}.'.format((self.money + self.sum_), self.currency))
-        return self.money + self.sum_
+        self.funds = self.money + self.sum_
+        print('Your account: {} {}.'.format((self.funds), self.currency))
+        return self.funds
 
     def withdraw_cash(self):
-        if self.money - self.sum_ < 0:
+        self.funds -= self.sum_
+        if self.funds < 0:
             print('Insufficient funds')
-        return 'Your assets: {} {}'.format(self.money, self.currency)
+        print('Get {} {}'.format(self.sum_, self.currency))
+        return 'Your assets: {} {}'.format(self.funds, self.currency)
 
     def close_account(self):
-        print('Your account is closed.\nGet {} {}.'.format(self.money, self.currency))
-        return self.money
+        print('Your account is closed.\nGet {} {}.'.format(self.funds, self.currency))
+        exit()
+
 
 
 client = Bank(0, 0, 0)
