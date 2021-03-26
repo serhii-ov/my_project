@@ -1,8 +1,9 @@
 class Bank:
 
-    def __init__(self, money, sum_):
+    def __init__(self, money, sum_, funds):
         self.money = money
         self.sum_ = sum_
+        self.funds = funds
         self.currency = 'USD'
         self.option = {'deposit': '1', 'withdraw': '2', 'close': '3'}
 
@@ -40,6 +41,7 @@ class Bank:
         return self.money
 
 
-client = Bank(0, 0)
+client = Bank(0, 0, 0)
 print(client.open_account())
-print(client.client_request())
+while True:
+    print(client.client_request())
